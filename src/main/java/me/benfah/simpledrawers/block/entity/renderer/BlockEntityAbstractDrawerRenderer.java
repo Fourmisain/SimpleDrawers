@@ -12,7 +12,7 @@ import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformation.Mode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Quaternion;
@@ -107,7 +107,7 @@ public abstract class BlockEntityAbstractDrawerRenderer<B extends BlockEntityAbs
 
         matrices.scale(0.01f, 0.01f, 0.01f);
 
-        int width = renderContext.getTextRenderer().getWidth(new LiteralText(s));
+        int width = renderContext.getTextRenderer().getWidth(Text.literal(s));
 
         renderContext.getTextRenderer().draw(s, -width / 2f, 3, 0, false, matrices.peek().getPositionMatrix(), vertexConsumers, false, 0, 15728880);
 

@@ -54,8 +54,8 @@ public abstract class DrawerContainerScreen<T extends DrawerContainer> extends H
             RenderSystem.colorMask(true, true, true, true);
             RenderSystem.enableDepthTest();
         }
-        this.textRenderer.draw(stack, this.title.asString(), 8.0F, 6.0F, 4210752);
-        this.textRenderer.draw(stack, this.playerInventoryTitle.asString(), 8.0F,
+        this.textRenderer.draw(stack, this.title, 8.0F, 6.0F, 4210752);
+        this.textRenderer.draw(stack, this.playerInventoryTitle, 8.0F,
                 (float) (this.backgroundHeight - 96 + 2), 4210752);
 
     }

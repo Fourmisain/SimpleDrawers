@@ -7,8 +7,12 @@ import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class WrappedBakedModel implements BakedModel
 {
@@ -20,7 +24,7 @@ public class WrappedBakedModel implements BakedModel
     }
 
     @Override
-    public List<BakedQuad> getQuads(BlockState state, Direction face, Random random)
+    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction face, Random random)
     {
         ArrayList<BakedQuad> quads = new ArrayList<>();
         for(BakedModel model : modelList)

@@ -12,18 +12,18 @@ import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ModelUtils
 {
-    public static Random RANDOM = new Random();
+    public static Random RANDOM = Random.createLocal();
 
     public static final Function<Entry<Property<?>, Comparable<?>>, String> PROPERTY_MAP_PRINTER = new Function<>() {
         public String apply(Map.Entry<Property<?>, Comparable<?>> entry) {
