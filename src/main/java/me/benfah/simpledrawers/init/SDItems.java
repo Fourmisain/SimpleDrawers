@@ -67,6 +67,8 @@ public class SDItems
     public static ItemTape TAPE;
     public static ItemPackagedDrawer PACKAGED_DRAWER;
 
+    public static ItemVoidUpgrade VOID_UPGRADE;
+
     public static void init()
     {
         initItemGroup();
@@ -118,6 +120,11 @@ public class SDItems
 
         TAPE = register("tape", new ItemTape(new Settings().maxCount(1).group(SD_GROUP).maxDamage(3)));
         PACKAGED_DRAWER = register("packaged_drawer", new ItemPackagedDrawer(new Settings().maxCount(1)));
+
+        VOID_UPGRADE = register("void_upgrade", new ItemVoidUpgrade(new Settings().group(SD_GROUP), (itemHolder) ->
+        {
+            itemHolder.setVoiding(!itemHolder.isVoiding());
+        }));
     }
 
     private static void initItemGroup()

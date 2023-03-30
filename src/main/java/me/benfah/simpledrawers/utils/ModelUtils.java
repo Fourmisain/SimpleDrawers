@@ -78,7 +78,8 @@ public class ModelUtils
     public enum SpecialModel
     {
 
-        LOCK(new ModelIdentifier("simpledrawers:attributes/lock"));
+        LOCK(new ModelIdentifier("simpledrawers:attributes/lock")),
+        VOID(new ModelIdentifier("simpledrawers:attributes/void"));
 
 
         private ModelIdentifier identifier;

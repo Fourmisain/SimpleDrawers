@@ -27,6 +27,10 @@ public class BlockEntityFullDrawerRenderer extends BlockEntityAbstractDrawerRend
 
         Direction facing = blockEntity.getCachedState().get(BlockAbstractDrawer.FACING);
         ItemHolder holder = blockEntity.getItemHolderAt(0, 0);
+
+        if(holder.isVoiding())
+            drawVoid(9, 13.5, matrices, vertexConsumers, light, overlay, facing);
+
         if(holder.isLocked())
             drawLock(8, 13.5, matrices, vertexConsumers, light, overlay, facing);
 
