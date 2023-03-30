@@ -24,6 +24,7 @@ public class ItemHolder
 
     private final InventoryHandler handler;
 
+    private boolean voiding = false;
     private boolean locked = false;
 
     public ItemHolder(int maxStacks, BlockEntityAbstractDrawer blockEntity)
@@ -60,7 +61,7 @@ public class ItemHolder
             if(isStackEqual(stack))
             {
                 int newAmount = Math.min(amount + stack.getCount(), getMaxAmount());
-                int stackSize = (amount + stack.getCount()) - newAmount;
+                int stackSize = voiding? 0 : (amount + stack.getCount()) - newAmount;
                 stack.setCount(stackSize);
                 amount = newAmount;
                 blockEntity.sync();
@@ -79,11 +80,11 @@ public class ItemHolder
             if (!currentStack.isEmpty() && isStackEqual(currentStack))
             {
                 int newAmount = Math.min(amount + currentStack.getCount(), getMaxAmount());
-                int stackSize = (amount + currentStack.getCount()) - newAmount;
+                int stackSize = voiding? 0 : (amount + stack.getCount()) - newAmount;
                 currentStack.setCount(stackSize);
                 amount = newAmount;
                 blockEntity.sync();
-                if (amount == getMaxAmount())
+                if (!voiding && amount == getMaxAmount())
                 {
                     break;
                 }
@@ -155,6 +156,11 @@ public class ItemHolder
         return amount <= 0;
     }
 
+    public boolean isVoiding()
+    {
+        return voiding;
+    }
+
     public boolean isLocked()
     {
         return locked;
@@ -165,6 +171,13 @@ public class ItemHolder
         this.locked = false;
         this.amount = 0;
         this.itemType = null;
+    }
+
+    public void setVoiding(boolean voiding)
+    {
+        this.voiding = voiding;
+
+        blockEntity.sync();
     }
 
     public void setLocked(boolean locked)
@@ -181,6 +194,7 @@ public class ItemHolder
     {
         tag.put("Item", serializeItemData(new NbtCompound()));
         tag.putInt("MaxAmount", maxStacks);
+        tag.putBoolean("Voiding", voiding);
         tag.putBoolean("Locked", locked);
 
         return tag;
@@ -193,6 +207,9 @@ public class ItemHolder
         holder.deserializeItemData(tag.getCompound("Item"));
         holder.maxStacks = tag.getInt("MaxAmount");
         holder.blockEntity = blockEntity;
+
+        if(tag.contains("Voiding"))
+            holder.voiding = tag.getBoolean("Voiding");
 
         if(tag.contains("Locked"))
             holder.locked = tag.getBoolean("Locked");

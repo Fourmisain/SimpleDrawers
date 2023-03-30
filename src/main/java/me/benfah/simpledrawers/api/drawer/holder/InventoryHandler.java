@@ -86,7 +86,7 @@ public class InventoryHandler implements SidedInventory
     @Override
     public boolean canInsert(int slot, ItemStack stack, Direction dir)
     {
-        return slot == 0 && (holder.shouldOffer(stack) && (holder.isEmpty() || holder.amount + stack.getCount() <= holder.getMaxAmount()));
+        return slot == 0 && (holder.shouldOffer(stack) && (holder.isEmpty() || holder.isVoiding() || holder.amount + stack.getCount() <= holder.getMaxAmount()));
     }
 
     @Override

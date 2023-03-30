@@ -55,6 +55,20 @@ public abstract class BlockEntityAbstractDrawerRenderer<B extends BlockEntityAbs
         return skyLight << 20 | blockLight << 4;
     }
 
+    public void drawVoid(double x, double y, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, Direction facing)
+    {
+        matrices.push();
+        transformAttribToFace(matrices, facing.getOpposite());
+
+
+        transformToPosition(x, y, matrices);
+        matrices.scale(1 / 16f, 1 / 16f, 1 / 16f);
+        matrices.translate(-0.5, 0, 0);
+
+        ModelUtils.drawSpecialTexture(matrices, vertexConsumers, ModelUtils.SpecialModel.VOID.getBakedModel(), light, overlay);
+
+        matrices.pop();
+    }
 
     public void drawLock(double x, double y, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, Direction facing)
     {

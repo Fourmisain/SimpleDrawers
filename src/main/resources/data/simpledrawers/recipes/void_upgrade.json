@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "IDI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:obsidian"
+    },
+    "D": {
+      "tag": "simpledrawers:drawers"
+    }
+  },
+  "result": {
+    "item": "simpledrawers:void_upgrade",
+    "count": 1
+  }
+}

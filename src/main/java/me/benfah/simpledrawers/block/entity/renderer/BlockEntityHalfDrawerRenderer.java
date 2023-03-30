@@ -42,6 +42,9 @@ public class BlockEntityHalfDrawerRenderer extends BlockEntityAbstractDrawerRend
     private void drawHolder(float offsetY, ItemHolder holder, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light,
                             int overlay, Direction facing)
     {
+        if(holder.isVoiding())
+            drawVoid(17 - 2.5, 16 - 5 -offsetY, matrices, vertexConsumers, light, overlay, facing);
+
         if(holder.isLocked())
             drawLock(16 - 2.5, 16 - 5 - offsetY, matrices, vertexConsumers, light, overlay, facing);
 

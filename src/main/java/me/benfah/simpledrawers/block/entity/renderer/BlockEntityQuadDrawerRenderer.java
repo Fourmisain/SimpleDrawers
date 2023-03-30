@@ -44,10 +44,11 @@ public class BlockEntityQuadDrawerRenderer extends BlockEntityAbstractDrawerRend
     private void drawHolder(int x, int y, ItemHolder holder, MatrixStack matrices,
                             VertexConsumerProvider vertexConsumers, int light, int overlay, Direction facing)
     {
+        if(holder.isVoiding())
+            drawVoid(17 - x, 16 - y + 2, matrices, vertexConsumers, light, overlay, facing);
+
         if(holder.isLocked())
-        {
             drawLock(16 - x, 16 - y + 2, matrices, vertexConsumers, light, overlay, facing);
-        }
 
         if(!holder.isEmpty() || holder.isLocked())
         {
